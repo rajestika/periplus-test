@@ -21,8 +21,6 @@ private WebDriver driver;
 		List<WebElement> products = wait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(
             By.xpath("//div[@class='row row-category-grid']//div[@class='single-product']")
         ));
-
-        boolean productFound = false;
         
         for (WebElement product : products) {
             List<WebElement> unavailableElements = product.findElements(By.xpath(".//*[@class='currently-unavailable']"));
@@ -31,7 +29,6 @@ private WebDriver driver;
             	wait.until(ExpectedConditions.invisibilityOfElementLocated(By.className("preloader")));
                 WebElement productLink = product.findElement(By.xpath(".//h3/a"));
                 productLink.click();
-                productFound = true;
                 break;
             }
         }    
